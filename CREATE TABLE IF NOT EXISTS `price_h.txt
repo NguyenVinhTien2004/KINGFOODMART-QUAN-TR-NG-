@@ -1,0 +1,34 @@
+CREATE TABLE IF NOT EXISTS `price_history` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `product_id` VARCHAR(255) NOT NULL,
+    `date` DATE NOT NULL,
+    `price` BIGINT UNSIGNED DEFAULT 0,
+    `original_price` BIGINT UNSIGNED DEFAULT 0,
+    `created_at` TIME,
+    UNIQUE KEY `unique_product_date` (`product_id`, `date`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+CREATE TABLE IF NOT EXISTS `stock_history` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `product_id` VARCHAR(255) NOT NULL,
+    `date` DATE NOT NULL,
+    `stock_quantity` INT DEFAULT 0,
+    `created_at` TIME,
+    UNIQUE KEY unique_product_date (product_id, date)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+CREATE TABLE IF NOT EXISTS `product` (
+    `product_id` VARCHAR(255) PRIMARY KEY,
+    `category` VARCHAR(255),
+    `name` TEXT,
+    `price` BIGINT UNSIGNED DEFAULT 0,
+    `promotion` TEXT,
+    `date` DATE,
+    `original_price` BIGINT UNSIGNED DEFAULT 0,
+    `stock_quantity` INT DEFAULT 0,
+    `total_sold` INT DEFAULT 0,
+    `created_at` TIME,
+    `updated_at` TIME
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
